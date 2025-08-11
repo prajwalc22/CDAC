@@ -15,17 +15,27 @@ public:
     void getDetails()
     {
         // method defination
+        cout << name << endl
+             << age << endl
+             << rno << endl;
     }
 };
 
 int main()
 {
     Students s;
-    s.name = "Kaitari";
+    s.name = "name";
     s.age = 22;
     s.rno = 7;
+    s.getDetails();
 
-    cout << s.name << endl
-         << s.age << endl
-         << s.rno << endl;
+    Students s2;
+    s2.name = "name2";
+    s2.age = 24;
+    s2.rno = 8;
+
+    s2.getDetails();
+    // return 0;
+
+    // getDetails();
 }
