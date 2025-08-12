@@ -32,7 +32,7 @@ public:
 
     ~students()
     {
-        cout << "destructor invoked" << endl;
+        cout << "destructor invoked";
     }
 };
 
