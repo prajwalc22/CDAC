@@ -1,5 +1,0 @@
-Default const for employee
-Default const for employee
-Default constructor for manager
-Default const for employee
-Default constructor for developer
