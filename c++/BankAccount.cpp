@@ -93,16 +93,19 @@ private:
     }
 
 public:
-    int processBusinessTransaction(double amount, double transaction_fee)
+    bool processBusinessTransaction(double amount, double transaction_fee)
+
     {
         if (amount + transaction_fee <= balance + overdraftLimit)
         {
             balance = balance - (amount + transactionFee);
             cout << "Transaction Successful!" << endl;
+            return true;
         }
         else
         {
             cout << "Transaction Failed!" << endl;
+            return false;
         }
         // status
     }
