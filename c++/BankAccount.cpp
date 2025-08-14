@@ -37,7 +37,7 @@ public:
         return balance;
     }
 };
-
+// child 1
 class SavingsAccount : public BankAccount
 {
 private:
@@ -71,8 +71,12 @@ public:
         cout << "account renewal after maturity" << endl;
         cout << "your account is due for renewal" << endl;
     }
+    void display()
+    {
+        cout << interestRate << minimumBalance << maturityPeriod << endl;
+    }
 };
-
+// child 2
 class CurrentAccount : public BankAccount
 {
 private:
@@ -113,6 +117,11 @@ public:
     double getOverdraftInfo(double overdraftLimit)
     {
         return overdraftLimit;
+    }
+
+    void display()
+    {
+        cout << overdraftLimit << transactionFee << businessType << endl;
     }
 };
 
