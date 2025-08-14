@@ -1,13 +1,12 @@
-this is a parameterised constructor for streaming user
-you can watch videos from here
-create playlist
-get user info
+parameterised const for savingsacc
+deposited 1000, new balance: 6000
+withdrawn 500, new balance: 5500
+Current balance: 5500
+interest calculated: 3630
+account renewal after maturity
+your account is due for renewal
 
-this is a parameterised constructor for streaming user
-para constructor for premiumsubs
-you can watch videos from here
-create playlist
-get user info
-downloading video with limit: 50
-watching in 4K quality
-Premium features: Download limit 50, Ad-free Yes, HD Quality 4K
+deposited 2000, new balance: 17000
+Transaction Successful! Amount: 1500 Fee: 50 New balance: 15450
+Current balance: 15450
+Overdraft limit: 10000

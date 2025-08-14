@@ -3,41 +3,47 @@ using namespace std;
 
 class BankAccount
 {
-
 protected:
     int accountNumber;
     string holderName;
     double balance;
+    string openingDate;
 
 public:
     BankAccount()
     {
-        cout << "default const for banaccount" << endl;
+        cout << "default const for bankaccount" << endl;
     }
-
-    BankAccount(int accNo, string name, double bal)
+    BankAccount(int accNo, string name, double bal, string date)
     {
         accountNumber = accNo;
         holderName = name;
         balance = bal;
+        openingDate = date;
     }
-
-    double deposit(double amount)
+    void deposit(double amount)
     {
-        cout << "needs to return the amount after the deposit" << endl;
         balance = balance + amount;
-        return balance;
+        cout << "deposited " << amount << ", new balance: " << balance << endl;
     }
-
-    double withdraw(double amount)
+    void withdraw(double amount)
     {
-
-        cout << "needs to display the amount after withdraw" << endl;
-        balance = balance - amount;
+        if (amount <= balance)
+        {
+            balance = balance - amount;
+            cout << "withdrawn " << amount << ", new balance: " << balance << endl;
+        }
+        else
+        {
+            cout << "insufficient balance" << endl;
+        }
+    }
+    double checkBalance()
+    {
         return balance;
     }
 };
-// child 1
+
 class SavingsAccount : public BankAccount
 {
 private:
@@ -50,33 +56,26 @@ public:
     {
         cout << "default constructor for savingsacc" << endl;
     }
-
-    SavingsAccount(double inte_rate, double min_bal, int matu_per, int accNo, string name, double bal) : BankAccount(accNo, name, bal)
+    SavingsAccount(double inte_rate, double min_bal, int matu_per, int accNo, string name, double bal, string date) : BankAccount(accNo, name, bal, date)
     {
-        cout << "parameterised const for savingsac" << endl;
+        cout << "parameterised const for savingsacc" << endl;
         interestRate = inte_rate;
         minimumBalance = min_bal;
         maturityPeriod = matu_per;
     }
-
-    int calculateInterest(double inte_rate, double min_bal, int matu_period, int interest)
+    double calculateInterest()
     {
-        cout << "interest is calculated here" << endl;
-        interest = (min_bal * inte_rate * matu_period) / 100;
+        double interest = (balance * interestRate * maturityPeriod) / 100;
+        cout << "interest calculated: " << interest << endl;
         return interest;
     }
-
     void renewAccount()
     {
         cout << "account renewal after maturity" << endl;
         cout << "your account is due for renewal" << endl;
     }
-    void display()
-    {
-        cout << interestRate << minimumBalance << maturityPeriod << endl;
-    }
 };
-// child 2
+
 class CurrentAccount : public BankAccount
 {
 private:
@@ -84,47 +83,52 @@ private:
     double transactionFee;
     string businessType;
 
+public:
     CurrentAccount()
     {
         cout << "default constructor for curracc" << endl;
     }
-
-    CurrentAccount(double od_limit, double trans_fee, string bus_type, int accNo, string name, double bal) : BankAccount(accNo, name, bal)
+    CurrentAccount(double od_limit, double trans_fee, string bus_type, int accNo, string name, double bal, string date) : BankAccount(accNo, name, bal, date)
     {
         overdraftLimit = od_limit;
         transactionFee = trans_fee;
         businessType = bus_type;
     }
-
-public:
-    bool processBusinessTransaction(double amount, double transaction_fee)
-
+    void processBusinessTransaction(double amount)
     {
-        if (amount + transaction_fee <= balance + overdraftLimit)
+        double totalAmount = amount + transactionFee;
+        if (totalAmount <= balance + overdraftLimit)
         {
-            balance = balance - (amount + transactionFee);
-            cout << "Transaction Successful!" << endl;
-            return true;
+            balance = balance - totalAmount;
+            cout << "Transaction Successful! Amount: " << amount << " Fee: " << transactionFee << " New balance: " << balance << endl;
         }
         else
         {
-            cout << "Transaction Failed!" << endl;
-            return false;
+            cout << "Transaction Failed! Insufficient funds including overdraft" << endl;
         }
-        // status
     }
-
-    double getOverdraftInfo(double overdraftLimit)
+    void getOverdraftInfo()
     {
-        return overdraftLimit;
-    }
-
-    void display()
-    {
-        cout << overdraftLimit << transactionFee << businessType << endl;
+        cout << "Overdraft limit: " << overdraftLimit << endl;
     }
 };
 
 int main()
 {
+    SavingsAccount savings(5.5, 1000.0, 12, 12345, "Pajwal", 5000.0, "2024-01-01");
+    savings.deposit(1000);
+    savings.withdraw(500);
+    cout << "Current balance: " << savings.checkBalance() << endl;
+    savings.calculateInterest();
+    savings.renewAccount();
+
+    cout << endl;
+
+    CurrentAccount current(10000.0, 50.0, "Retail", 67890, "Prajwal", 15000.0, "2024-02-01");
+    current.deposit(2000);
+    current.processBusinessTransaction(1500);
+    cout << "Current balance: " << current.checkBalance() << endl;
+    current.getOverdraftInfo();
+
+    return 0;
 }
