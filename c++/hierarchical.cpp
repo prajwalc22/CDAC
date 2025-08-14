@@ -47,6 +47,10 @@ public:
         bonus = bns;
         cout << "parameterised constructor for manager" << endl;
     }
+    void getLeave()
+    {
+        cout << "manager is on leave" << endl;
+    }
 };
 
 // child 2 developer
@@ -86,4 +90,6 @@ int main()
     Employee e;
     Manager m;
     Developer d;
+    Manager l;
+    l.getLeave();
 }
