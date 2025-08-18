@@ -18,9 +18,9 @@ public:
 
 int main()
 {
-    Shape s;
+    // Shape s;
 
-    Shape *s = new circle();
+    // Shape *s = new circle();
 
-    s->draw();
+    // s->draw();
 }
