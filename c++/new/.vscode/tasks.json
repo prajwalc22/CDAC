@@ -1,0 +1,30 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-o",
+                "${fileBasenameNoExtension}",
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Build the C++ executable without running."
+        },
+        {
+            "label": "compile and run",
+            "type": "shell",
+            "command": "g++ -o \"${fileBasenameNoExtension}\" \"${file}\" && ./\"${fileBasenameNoExtension}\" < input.txt > output.txt",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Build the C++ executable and run it with I/O redirection."
+        }
+    ]
+}
