@@ -1,0 +1,100 @@
+chmod +x script.sh
+chmod 755 script.sh  # rwxr-xr-x
+
+Case Sensitivity:
+
+Shell is case-sensitive:
+Name="John"
+name="Jane"  # Different variable
+
+Whitespace Matters:
+
+No spaces around = in variable assignments:
+
+
+name="John"     # Correct
+name = "John"   # Wrong - creates command 'name' with arguments '=' and 'John'
+
+# Variable assignment (no spaces around =)
+In shell scripting, the $ symbol is primarily used for variable expansion and command substitution.
+It's a fundamental character that allows you to access the values stored in variables or the output of commands.
+
+Variable Expansion
+
+The most common use of $ is to retrieve the value of a variable. 
+When you define a variable, you assign a value to a name. 
+To use that value later in your script, you prefix the variable name with $.
+
+Special Variables:
+
+The $ symbol is also used with several special shell variables that provide information about the script's execution or environment. Some common ones include:
+
+    $0: The name of the script itself.
+
+    $1, $2, $3, ...: Positional parameters, representing the arguments passed to the script.
+
+    $#: The number of arguments passed to the script.
+
+    $?: The exit status of the last executed command. A value of 0 typically indicates success, while any other value indicates an error.
+
+$$: The process ID (PID) of the current shell.
+
+$* and $@: All positional parameters. 
+While they often produce similar results, their behavior differs when enclosed in double quotes. 
+$* expands to a single word with all arguments, whereas $@ expands to separate words for each argument,
+ which is generally preferred when iterating through arguments.
+
+$0    # Script name
+$1    # First argument
+$2    # Second argument
+$#    # Number of arguments
+$@    # All arguments as separate words
+$*    # All arguments as single word
+$$    # Process ID of current shell
+$?    # Exit status of last command
+
+
+Input and Output:
+Reading User Input:
+#!/bin/bash
+
+echo "What's your name?"
+read name
+echo "Hello, $name!"
+
+# Read with prompt
+read -p "Enter your age: " age
+echo "You are $age years old"
+
+# Read silently (for passwords)
+read -s -p "Enter password: " password
+echo # New line after silent input
+
+
+echo $HOME     # User's home directory
+echo $PATH     # System PATH
+echo $USER     # Current username
+echo $PWD      # Current directory
+
+
+
+# Numeric comparisons
+-eq  # Equal to
+-ne  # Not equal to
+-lt  # Less than
+-le  # Less than or equal
+-gt  # Greater than
+-ge  # Greater than or equal
+
+# String comparisons
+=    # Equal to
+!=   # Not equal to
+-z   # String is empty
+-n   # String is not empty
+
+# File tests
+-f   # File exists and is regular file
+-d   # Directory exists
+-r   # File is readable
+-w   # File is writable
+-x   # File is executable
