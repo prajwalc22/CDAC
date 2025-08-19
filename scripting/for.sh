@@ -16,6 +16,6 @@ for ((i=1; i<=5; i++)); do
 done
 
 # Loop through command line arguments
-for arg in "$@"; do
-    echo "Argument: $arg"
-done
+# for arg in "$@"; do
+#     echo "Argument: $arg"
+# done
