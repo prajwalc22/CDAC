@@ -71,7 +71,7 @@ void display(A a1)
     // Let's go with the interpretation that 'display' is meant to be a non-member friend function,
     // and you want to understand how friendship works.
     // For `display(A a1)` to access `a1.x`, `A` must explicitly declare `display` as a friend.
-    cout << a1.x;
+    // cout << a1.x;
 }
 
 int main()
