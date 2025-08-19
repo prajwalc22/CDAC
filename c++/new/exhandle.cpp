@@ -6,7 +6,7 @@ int divide(int n, int d)
 {
     if (d == 0)
     {
-        d = -1;
+        throw -1;
         throw runtime_error("Value must be negative");
     }
     return n / d;
