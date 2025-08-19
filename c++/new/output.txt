@@ -1,1 +1,3 @@
-Exception caught: Value must be negative
+Price without toppings: 130
+Price with toppings: 160
+Total Revenue: 320
