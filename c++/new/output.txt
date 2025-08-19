@@ -1,1 +1,1 @@
-Exception caught: Division by zero error
+Exception caught: Value must be negative
