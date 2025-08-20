@@ -1,2 +1,5 @@
-Price: $19(decimal removed)
-Letter: A, as number: 65
+task assigned!
+bug found
+conversion failed
+bug found
+bug found
