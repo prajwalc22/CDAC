@@ -98,3 +98,14 @@ echo $PWD      # Current directory
 -r   # File is readable
 -w   # File is writable
 -x   # File is executable
+
+
+Method 1: Using read -a for Space-Separated Input
+
+The simplest method uses the -a flag with the read command to store space-separated values directly into an array:
+
+bash
+#!/bin/bash
+echo "Enter array elements separated by spaces:"
+read -a my_array
+echo "You entered: ${my_array[@]}"
