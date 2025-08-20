@@ -7,3 +7,6 @@ echo "ur age is: $age"
 
 read -s -p "enter ur pin: " pin
 echo "pin entered successfully"
+
+read -n 1 -p "Save info? (y/n):" confirm
+echo
