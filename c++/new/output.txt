@@ -1,1 +1,2 @@
-10(int)+3.5(double)+13.5(double)
+Price: $19(decimal removed)
+Letter: A, as number: 65
