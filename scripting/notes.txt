@@ -109,3 +109,10 @@ bash
 echo "Enter array elements separated by spaces:"
 read -a my_array
 echo "You entered: ${my_array[@]}"
+
+
+&& - only checks one condition in an if condition
+if (cond1 && cond2)
+it will only check cond 1 if cond 1 is false and will skip cond2
+therefore we need -a for and 
+similarly dor ||  we use -o as the substitute
