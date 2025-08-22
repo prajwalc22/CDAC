@@ -1,5 +1,6 @@
-task assigned!
-bug found
-conversion failed
-bug found
-bug found
+Value100
+
+BEST PRACTICE:
+1.Set pointers to nullptr after delete
+2.Check for nullptr before using
+3.Use smart pointers when possible
