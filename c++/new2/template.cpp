@@ -12,4 +12,6 @@ int main()
     cout << addTemplate(4, 5) << endl;
     cout << addTemplate(6, 7) << endl;
     cout << addTemplate(7, 8) << endl;
+    // cout << addTemplate("hello", "frrands") << endl;
+    cout << addTemplate('c', 'd') << endl;
 }
