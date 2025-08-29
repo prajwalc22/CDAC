@@ -1,1 +1,3 @@
-valid
+para const invoked
+Destructor invoked
+Destructor invoked
