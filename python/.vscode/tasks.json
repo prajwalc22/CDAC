@@ -1,0 +1,28 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "run python",
+            "type": "shell",
+            "command": "python3",
+            "args": [
+                "${file}"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": false
+            },
+            "detail": "Run the Python script without I/O redirection."
+        },
+        {
+            "label": "run python with I/O",
+            "type": "shell",
+            "command": "python3 \"${file}\" < input.txt > output.txt",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Run the Python script with I/O redirection."
+        }
+    ]
+}
