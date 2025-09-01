@@ -34,4 +34,4 @@ int main()
     Employee emp("Ramesh", 23, "Civil");
 
     Employee emp2 = emp;
-}
+}   
