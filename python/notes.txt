@@ -1,4 +1,5 @@
 Method 	          Description
+
 append()	      Adds an element at the end of the list
 
 clear()	          Removes all the elements from the list
