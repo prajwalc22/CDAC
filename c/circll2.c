@@ -37,6 +37,33 @@ void insertAtBegining(int data)
     printf("Node with data %d inserted at beginning\n", data);
 }
 
+void insertAtEnd(int data)
+{
+
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+
+    if (head == NULL)
+    {
+
+        head = newNode;
+        newNode->next = head;
+
+        printf("Node with data %d inserted at end\n", data);
+        return;
+    }
+
+    struct Node *temp = head;
+    while (temp->next != head)
+    {
+        temp = temp->next;
+    }
+
+    temp->next = newNode;
+    newNode->next = head;
+    printf("Node with data %d iserte  at end\n", data);
+}
+
 void Display()
 {
     if (head == NULL)
