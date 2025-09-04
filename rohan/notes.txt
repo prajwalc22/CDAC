@@ -1,0 +1,19 @@
+# Create environment named 'env'
+python3 -m venv env
+
+# Create environment named 'myproject_env'
+python3 -m venv myproject_env
+
+# Create hidden environment (starts with dot)
+python3 -m venv .venv
+
+then:
+source venv/bin/activate
+
+
+
+venv/
+├── bin/          # Contains activate script and executables
+├── lib/          # Python libraries
+├── include/      # Header files
+└── pyvenv.cfg    # Configuration file

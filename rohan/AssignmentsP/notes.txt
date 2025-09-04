@@ -1,0 +1,14 @@
+
+
+
+
+
+
+
+
+Reverse the tuple
+tuple1 = (10, 20, 30, 40, 50)
+In a given list insert a number at given position.
+Count the number of times a character appears in a given string.
+Remove First and last element of list.
+
