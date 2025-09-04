@@ -37,8 +37,41 @@ void insertAtEnd(int data)
     }
     temp->next = newNode;
 }
-void insertAtPosition(int, int)
+
+void insertAtPosition(int data, int position)
 {
+    // If position is 0, insert at beginning
+    if (position == 0)
+    {
+        insertAtBegining(data);
+        return;
+    }
+
+    // Create new node
+    struct Node *newNode = (struct Node *)malloc(sizeof(struct Node));
+    newNode->data = data;
+    newNode->next = NULL;
+
+    // Traverse to the position before where we want to insert
+    struct Node *temp = head;
+    for (int i = 0; i < position - 1 && temp != NULL; i++)
+    {
+        temp = temp->next;
+    }
+
+    // Check if position is valid
+    if (temp == NULL)
+    {
+        printf("Position %d is out of bounds\n", position);
+        free(newNode);
+        return;
+    }
+
+    // Insert the new node
+    newNode->next = temp->next;
+    temp->next = newNode;
+
+    printf("Node with data %d inserted at position %d\n", data, position);
 }
 
 int search(int value)
@@ -69,10 +102,29 @@ int search(int value)
     printf("Value %d not found in the list\n", value);
     return -1;
 }
-void deleteAtBeginning()
+void deleteAtEnd()
 {
-    
 
+    if (head == NULL)
+    {
+        printf("List is Empty \n");
+        return;
+    }
+
+    if (head->next == NULL)
+    {
+        free(head);
+        head = NULL;
+        return;
+    }
+    struct Node *temp = head;
+    while (temp->next->next != NULL)
+    {
+
+        temp = temp->next;
+        // free(temp->next);
+        temp->next = NULL;
+    }
 }
 void Display()
 {
@@ -105,7 +157,7 @@ int main()
         printf("4th: Display the linkedlist  \n");
         printf("5: Exit.\n");
         printf("6: Search a value:\n");
-        printf("7: Delete at Beginning\n");  
+        printf("7: Delete at End\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -118,6 +170,7 @@ int main()
             insertAtEnd(3000);
             break;
         case 3:
+            insertAtPosition(7000, 3);
             break;
         case 4:
             Display();
@@ -132,7 +185,7 @@ int main()
             search(3000);
             break;
         case 7:
-            deleteAtBeginning();  // New case
+            deleteAtEnd(); // New case
             break;
         default:
             printf("Invalid choice\n");
