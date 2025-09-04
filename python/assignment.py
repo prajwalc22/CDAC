@@ -1,67 +1,79 @@
 list=[1,2,3,4,5]
-
-# •	Access the third element of a given list.
-print(list[2])
+print("Original list:",list)
 
 
-# •	Access the last element of a list using negative indexing.
-print(list[-1])
+print("Third ele:",list[2])
 
 
-# 	Change the value of a specific element in a list.
+
+print("Last ele:",list[-1])
+
+
+
 list[1]=6
-print(list)
+print("Updated list:",list)
 
 
-# •	Replace a slice of a list with new elements.
+
 list[2:4]=[7,8,9]
+print("Updated list after replacing a slice of a list with new elements",list)
 print(list)
 
-# Access elements by index (e.g., first, last, a specific element).
+print("Accessign element by index:")
 print(list[0])
 print(list[-1])
 print(list[2])
 
-# •	Add an element to the end of a list using append().
+
+print("Add an element to the end of a list using append().")	
 list.append(10)
 print(list)
 
+print("Insert an element at a specific position using insert().")
 
-# •	Insert an element at a specific position using insert().
 list.insert(2,22)
 print(list)
 
-# •	Remove an element by value using remove().
+print("Remove an element by value using remove().")
+	
 list.remove(22)
 print(list)
 
-# •	Remove an element by index using del or pop().
+
+print("Remove an element by index using del or pop().")
 list.pop(5)
 print(list)
 
-# •	Find the length of a list using len().
+print("Find the length of a list using len().")	
 print(len(list))
 
-
-# •	Sort the elements in the list in descending order
+print("Sort the elements in the list in descending order")	
 list.sort()
 print(list)
-
-# •	Find the index of the first occurrence of an element. 
 list.sort(reverse=True)
 print(list)
 
-# •	Count the occurrences of a specific element in a list.
+print("Find the index of the first occurrence of an element.")
+my_list = [10, 20, 30, 20, 40]
+element = 20
+index = my_list.index(element)
+
+print("First occurrence of", element, "is at index:",index)
+
+
+print("Count the occurrences of a specific element in a list.")	
 list2=[7,8,9,7,7,7,7]
+print(list2)
 print(list2.count(7))
 
-# •	Find the sum or average of elements in a list.
+print("Find the sum or average of elements in a list.")	
 sum=sum(list2)
-print(sum)
+print("Sum",sum)
 
-# •	Find the largest or smallest element in a list.
-print(min(list))
-print(max(list))
+print("Find the largest or smallest element in a list.")
+
+print("Smallest",min(list))
+print("Largest",max(list))
 
 
 
