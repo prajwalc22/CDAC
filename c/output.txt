@@ -1,1 +1,0 @@
-The area of rectangle is : 65534
