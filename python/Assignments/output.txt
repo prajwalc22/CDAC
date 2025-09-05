@@ -1,0 +1,5 @@
+7
+Hello,Ramesh!
+madam is a palindrome
+{'upper': 6, 'lower': 8}
+[1, 2, 3, 4, 5]
