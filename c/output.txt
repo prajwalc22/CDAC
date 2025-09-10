@@ -1,0 +1,9 @@
+Pushed: 1
+Pushed: 2
+Pushed: 3
+Peeked: 3
+Popped: 3
+Popped: 2
+Popped: 1
+Stack is empty. Cannot pop.
+Stack is empty. Cannot peek.
