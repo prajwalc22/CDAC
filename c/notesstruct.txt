@@ -1,0 +1,46 @@
+Data structures are like containers that help us organize and 
+store data in our computer programs. Just like you have different
+containers for different things (a toy box for toys, a bookshelf for books),
+we have different data structures for different types of data organization needs.
+
+
+1. Structures in C
+What is a Structure?
+
+A structure is like a form or a template that groups related information together. Think of it like a student ID card that has name, age, and roll number all in one place.
+Real-Life Example
+
+Imagine you're the class monitor and need to keep track of students. Instead of having separate lists for names, ages, and roll numbers, you create a student record that has all information together.
+Simple Structure Code
+
+c
+#include <stdio.h>
+#include <string.h>
+
+// Creating a structure template
+struct Student {
+    char name[50];
+    int age;
+    int rollNumber;
+    float marks;
+};
+
+int main() {
+    // Creating a student record
+    struct Student student1;
+    
+    // Filling the information
+    strcpy(student1.name, "Alice");
+    student1.age = 20;
+    student1.rollNumber = 101;
+    student1.marks = 85.5;
+    
+    // Printing the information
+    printf("Student Information:\n");
+    printf("Name: %s\n", student1.name);
+    printf("Age: %d\n", student1.age);
+    printf("Roll Number: %d\n", student1.rollNumber);
+    printf("Marks: %.1f\n", student1.marks);
+    
+    return 0;
+}
