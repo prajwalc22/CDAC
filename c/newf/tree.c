@@ -97,6 +97,40 @@ void inorder_traversal(int index)
     // 3. Recursively visit the right subtree.
     inorder_traversal(2 * index + 2);
 }
+void preorder_traversal(int index)
+{
+    // Base case: If the index is out of bounds or the node is empty, stop.
+    if (index >= MAX_SIZE || tree[index] == -1)
+    {
+        return;
+    }
+
+    // 1. Print the current node's data (Root).
+    printf("%d ", tree[index]);
+
+    // 2. Recursively visit the left subtree.
+    preorder_traversal(2 * index + 1);
+
+    // 3. Recursively visit the right subtree.
+    preorder_traversal(2 * index + 2);
+}
+void postorder_traversal(int index)
+{
+    // Base case: If the index is out of bounds or the node is empty, stop.
+    if (index >= MAX_SIZE || tree[index] == -1)
+    {
+        return;
+    }
+
+    // 1. Recursively visit the left subtree.
+    postorder_traversal(2 * index + 1);
+
+    // 2. Recursively visit the right subtree.
+    postorder_traversal(2 * index + 2);
+
+    // 3. Print the current node's data (Root).
+    printf("%d ", tree[index]);
+}
 
 /**
  * @brief Searches for a value in the tree.
