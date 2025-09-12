@@ -1,172 +1,186 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Structure for BST node
-struct TreeNode
-{
-    int data;
-    struct TreeNode *left;
-    struct TreeNode *right;
-};
+/**
+ * C program to implement a Binary Search Tree (BST) using an array.
+ * - The root is at index 0.
+ * - For a node at index `i`, its left child is at `2*i + 1` and right child is at `2*i + 2`.
+ * - An empty node is represented by -1.
+ */
 
-// Function to create a new node
-struct TreeNode *createNode(int data)
+// Define the maximum number of nodes the tree can hold.
+#define MAX_SIZE 100
+
+// The array that will store the tree. Declared globally for simplicity.
+int tree[MAX_SIZE];
+
+/**
+ * @brief Initializes the tree by setting all elements to -1 (empty).
+ */
+void init_tree()
 {
-    struct TreeNode *newNode = (struct TreeNode *)malloc(sizeof(struct TreeNode));
-    newNode->data = data;
-    newNode->left = NULL;
-    newNode->right = NULL;
-    return newNode;
+    for (int i = 0; i < MAX_SIZE; i++)
+    {
+        tree[i] = -1; // -1 indicates an empty spot in the tree.
+    }
 }
 
-// Insert function
-struct TreeNode *insert(struct TreeNode *root, int data)
+/**
+ * @brief Inserts a new data value into the BST.
+ * @param data The integer value to be inserted.
+ */
+void insert(int data)
 {
-    // If tree is empty, create root node
-    if (root == NULL)
+    // Start the search for an insertion spot from the root.
+    int current_index = 0;
+
+    // 1. Handle the case where the tree is completely empty.
+    if (tree[0] == -1)
     {
-        return createNode(data);
+        tree[0] = data;
+        printf("Inserted %d at the root (index 0).\n", data);
+        return;
     }
 
-    // If data is smaller, insert in left subtree
-    if (data < root->data)
+    // 2. Traverse the tree to find the correct empty spot.
+    while (current_index < MAX_SIZE && tree[current_index] != -1) // here because we are comparing it with a node first then performing insertion
     {
-        root->left = insert(root->left, data);
-    }
-    // If data is larger, insert in right subtree
-    else if (data > root->data)
-    {
-        root->right = insert(root->right, data);
-    }
-    // If data already exists, do nothing
-
-    return root;
-}
-
-// Search function
-struct TreeNode *search(struct TreeNode *root, int data)
-{
-    // Base case: root is NULL or data is found
-    if (root == NULL || root->data == data)
-    {
-        return root;
-    }
-
-    // Data is smaller, search left subtree
-    if (data < root->data)
-    {
-        return search(root->left, data);
-    }
-    // Data is larger, search right subtree
-    return search(root->right, data);
-}
-
-// Find minimum value (leftmost node)
-struct TreeNode *findMin(struct TreeNode *root)
-{
-    while (root && root->left != NULL)
-    {
-        root = root->left;
-    }
-    return root;
-}
-
-// Delete function
-struct TreeNode *deleteNode(struct TreeNode *root, int data)
-{
-    if (root == NULL)
-    {
-        return root;
-    }
-
-    // Find the node to delete
-    if (data < root->data)
-    {
-        root->left = deleteNode(root->left, data);
-    }
-    else if (data > root->data)
-    {
-        root->right = deleteNode(root->right, data);
-    }
-    else
-    {
-        // Node to be deleted found
-
-        // Case 1: No children (leaf node)
-        if (root->left == NULL && root->right == NULL)
+        // If data is smaller, go to the left child.
+        if (data < tree[current_index])
         {
-            free(root);
-            return NULL;
+            current_index = 2 * current_index + 1;
         }
-        // Case 2: One child
-        else if (root->left == NULL)
+        // If data is larger, go to the right child.
+        else if (data > tree[current_index])
         {
-            struct TreeNode *temp = root->right;
-            free(root);
-            return temp;
+            current_index = 2 * current_index + 2;
         }
-        else if (root->right == NULL)
-        {
-            struct TreeNode *temp = root->left;
-            free(root);
-            return temp;
-        }
-        // Case 3: Two children
+        // If data is a duplicate, do not insert and inform the user.
         else
         {
-            struct TreeNode *temp = findMin(root->right);
-            root->data = temp->data;
-            root->right = deleteNode(root->right, temp->data);
+            printf("Value %d already exists in the tree. No insertion.\n", data);
+            return;
         }
     }
-    return root;
-}
 
-// In-order traversal (gives sorted output)
-void inorderTraversal(struct TreeNode *root)
-{
-    if (root != NULL)
+    // 3. Insert the data if the found index is within bounds.
+    if (current_index < MAX_SIZE)
     {
-        inorderTraversal(root->left);
-        printf("%d ", root->data);
-        inorderTraversal(root->right);
-    }
-}
-
-// BST Main function
-int main()
-{
-    struct TreeNode *root = NULL;
-
-    // Insert elements
-    root = insert(root, 50);
-    root = insert(root, 30);
-    root = insert(root, 70);
-    root = insert(root, 20);
-    root = insert(root, 40);
-    root = insert(root, 60);
-    root = insert(root, 80);
-
-    printf("In-order traversal: ");
-    inorderTraversal(root);
-    printf("\n");
-
-    // Search for a value
-    int searchValue = 40;
-    if (search(root, searchValue))
-    {
-        printf("Found %d in BST\n", searchValue);
+        tree[current_index] = data;
+        printf("Inserted %d at index %d.\n", data, current_index);
     }
     else
     {
-        printf("%d not found in BST\n", searchValue);
+        printf("Could not insert %d. Tree is full or index out of bounds.\n", data);
+    }
+}
+
+/**
+ * @brief Performs an in-order traversal of the BST.
+ * For a BST, this will print the elements in sorted order.
+ * @param index The index of the current node to start traversal from (usually 0).
+ */
+void inorder_traversal(int index)
+{
+    // Base case: If the index is out of bounds or the node is empty, stop.
+    if (index >= MAX_SIZE || tree[index] == -1)
+    {
+        return;
     }
 
-    // Delete a node
-    root = deleteNode(root, 30);
-    printf("After deleting 30: ");
-    inorderTraversal(root);
+    // 1. Recursively visit the left subtree.
+    inorder_traversal(2 * index + 1);
+
+    // 2. Print the current node's data.
+    printf("%d ", tree[index]);
+
+    // 3. Recursively visit the right subtree.
+    inorder_traversal(2 * index + 2);
+}
+
+/**
+ * @brief Searches for a value in the tree.
+ * @param data The value to search for.
+ * @return The index of the node if found, otherwise -1.
+ */
+int search(int data)
+{
+    int current_index = 0;
+
+    // Traverse the tree until we go out of bounds or find an empty spot.
+    while (current_index < MAX_SIZE && tree[current_index] != -1)
+    {
+        // If we found the data, return its index.
+        if (data == tree[current_index])
+        {
+            return current_index;
+        }
+        // If the search data is smaller, go left.
+        else if (data < tree[current_index])
+        {
+            current_index = 2 * current_index + 1;
+        }
+        // Otherwise, go right.
+        else
+        {
+            current_index = 2 * current_index + 2;
+        }
+    }
+    // If the loop finishes, the value was not found.
+    return -1;
+}
+
+int main()
+{
+    // Initialize the tree to be empty.
+    init_tree();
+
+    // Insert some elements into the tree.
+    printf("--- Inserting Elements ---\n");
+    insert(27);
+    insert(14);
+    insert(35);
+    insert(10);
+    insert(19);
+    insert(31);
+    insert(42);
+    insert(14); // Test duplicate insertion
+
+    // Print the array to show the internal representation.
+    printf("\n--- Internal Array Representation ---\n");
+    for (int i = 0; i < 20; i++) // Print first 20 elements for brevity
+    {
+        printf("tree[%d] = %d\n", i, tree[i]);
+    }
+
+    // Perform an in-order traversal to display the sorted elements.
+    printf("\n--- In-order Traversal (Sorted Order) ---\n");
+    inorder_traversal(0);
     printf("\n");
+
+    // Search for elements.
+    printf("\n--- Searching for Elements ---\n");
+    int search_val = 19;
+    int result = search(search_val);
+    if (result != -1)
+    {
+        printf("Found %d at index %d.\n", search_val, result);
+    }
+    else
+    {
+        printf("%d not found in the tree.\n", search_val);
+    }
+
+    search_val = 50;
+    result = search(search_val);
+    if (result != -1)
+    {
+        printf("Found %d at index %d.\n", search_val, result);
+    }
+    else
+    {
+        printf("%d not found in the tree.\n", search_val);
+    }
 
     return 0;
 }
